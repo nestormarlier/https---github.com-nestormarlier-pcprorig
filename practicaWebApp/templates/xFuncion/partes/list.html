@@ -1,0 +1,94 @@
+{% extends 'list.html' %}
+
+{% block columnas %}
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Maquinista</th>
+        <th scope="col">Supervisor</th>
+        <th scope="col">Primer ayudante</th>
+        <th scope="col">Segundo Ayudante</th>
+        <th scope="col">Ficha técnica</th>
+        <th scope="col">Impresora</th>
+        <th scope="col">Fecha de creación</th>
+        <th scope="col">Cambio</th>
+        <th scope="col">Setup</th>
+        <th scope="col">Producción</th>
+        <th scope="col">Metros registro</th>
+        <th scope="col">Kg registro</th>
+        <th scope="col">Metros producidos</th>
+        <th scope="col">Kg producidos</th>
+        <th scope="col">Opciones</th>
+    </tr>
+{% endblock  %}}
+
+{% block filas %}
+    {% for p in partes %}
+        <tr>
+            <td scope="row">
+                {{p.parte_id}}
+            </td>
+            <td scope="row">
+                {{p.maquinista}}
+            </td>
+            <td scope="row">
+                {{p.supervisor}}
+            </td>
+            <td scope="row">
+                {{p.ayudante1ero}}
+            </td>
+            <td scope="row">
+                {{p.ayudante2do}}
+            </td>
+            <td scope="row">
+                {{p.ficha_tecnica}}
+            </td>
+            <td scope="row">
+                {{p.impresora}}
+            </td>
+            <td scope="row">
+                {{p.create}}
+            </td>
+            <td scope="row">
+                {% for cambio in p.cambio.all %}
+                <ul>
+                    {{ cambio.cambio_id }} {{ cambio.parada }}
+                </ul>
+                {% endfor %}
+            </td>
+            <td scope="row">
+                {% for setup in p.setup.all %}
+                <ul>
+                    {{ setup.setup_id }} {{ setup.parada }}
+                </ul>
+                {% endfor %}
+            </td>
+            <td scope="row">
+                {% for prod in p.produccion.all %}
+                <ul>
+                    {{ prod.produccion_id }} {{ prod.parada }}
+                </ul>
+                {% endfor %}
+            </td>
+            <td scope="row">
+                {{p.metros_registro}}
+            </td>
+            <td scope="row">
+                {{p.kg_registro}}
+            </td>
+            <td scope="row">
+                {{p.metros}}
+            </td>
+            <td scope="row">
+                {{p.kg}}
+            </td>
+            <td scope="row">
+                <button type="button" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock  %}

@@ -1,0 +1,34 @@
+{% extends 'list.html' %}
+
+{% block columnas %}
+<tr>
+    <th scope="col">Id</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Fecha de creación</th>
+    <th scope="col">Opciones</th>
+</tr>
+{% endblock  %}}
+
+{% block filas %}
+{% for i in impresoras %}
+<tr>
+    <td scope="row">
+        {{i.impresora_id}}
+    </td>
+    <td scope="row">
+        {{i.nombre}}
+    </td>
+    <td scope="row">
+        {{i.create}}
+    </td>
+    <td scope="row">
+        <button type="button" class="btn btn-warning btn-xs btn-flat">
+            <i class="fas fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-danger btn-xs btn-flat">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+    </td>
+</tr>
+{% endfor %}
+{% endblock  %}
